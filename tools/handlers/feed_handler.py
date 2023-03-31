@@ -52,5 +52,13 @@ class Feed_Handler(object):
         res = self.feed.stops.query("stop_id=='{}'".format(station_id))
         if len(res):
             return res.iloc[0]['stop_name']
+        
+    def get_number_of_trips_at_station(self, station_name):
+        """
+        Getting how many trips are serving the given station.
+        """
+        res = self.feed.stop_times.query("stop_name=='{}'".format(station_name))
+        return len(res)
+
 
     
